@@ -4,7 +4,7 @@ const { getUsers, getUserbyID, createUser, userUpdate, userDelete } = require(".
 //router
 const router = express.Router();
 
-//routes
+// ROUTES samples 
 
 //get details for all uses
 router.get('/getall', getUsers);

@@ -1,6 +1,6 @@
 const db = require("../configs/db");
 
-//GET all users list
+//READ operation to use /getall to get users list
 const getUsers = async(req,res) => {
     try{
         const data = await db.query("SELECT * FROM user")
@@ -25,9 +25,7 @@ const getUsers = async(req,res) => {
     }
 };
 
-
-//get users by ID
-
+//Read operation by Get BY ID
 const getUserbyID = async(req, res) => {
     try{
      const userId = req.params.id;
@@ -41,7 +39,6 @@ const getUserbyID = async(req, res) => {
 
     // const db = await db.query(`select * from user where id=`+userId)
     const data = await db.query(`SELECT * FROM user WHERE id=?`, [userId,]);
-
     if (!data){
         return res.status(404).send({
             success: false,
@@ -61,7 +58,7 @@ const getUserbyID = async(req, res) => {
     }
 };
 
-//create users
+//create Operation
 const createUser = async(req,res) =>{
     try{
         const {id,username, age,emailid} = req.body;
@@ -83,21 +80,21 @@ const createUser = async(req,res) =>{
         }
         res.status(201).send({
             success: true,
-            message:"new recor is added",
+            message:"new record is added",
         })
     }
     catch(error){
         console.log(error);
         res.status(500).send({
             success: false, 
-            message: "Internal server error",
+            message: "Internal server error occured",
             error
         })
     }
 };
 
 
-//Update userdetails using UPDATE
+//Update operation
 
 const userUpdate = async(req, res) =>{
     try{
@@ -106,7 +103,7 @@ const userUpdate = async(req, res) =>{
         if(!userId){
             return res.status(404).send({
                 success: false,
-                message:"User Id is wrongly placed",
+                message:"User Id is not found",
                 error
             })
         }
@@ -115,12 +112,12 @@ const userUpdate = async(req, res) =>{
         if(!data){
             res.status(500).send({
                 success:false,
-                message: "Error in update",
+                message: "Error in UPDATE query",
             })
         }
         res.status(200).send({
             success: true,
-            message: "User details updated",
+            message: "User details are updated",
         })
     }
     catch(error){
@@ -133,7 +130,7 @@ const userUpdate = async(req, res) =>{
     }
 }
 
-//DEELTE
+//DELETE operation
 const userDelete = async(req, res) =>{
     try{
         const userId = req.params.id;

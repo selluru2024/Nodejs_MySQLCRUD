@@ -1,3 +1,4 @@
+//declare the packages
 const express = require('express')
 const morgan = require('morgan');
 const app = express();
@@ -21,11 +22,12 @@ app.get('/test', (req, res) => {
   res.status(200).send('<h1> Nodejs SQL App</h1>');
 })
 
-//conditionally listneing mysql
+//conditionally listening mysql
 mysqlpool.query('SELECT 1').then(() =>{
     //mysql connectity
     console.log('My SQL DB is connected');
-    //listen
+
+    //listen main port
 app.listen(PORT, () => {
     console.log(`server running on ${process.env.PORT}`);
     //console.log(`server running on 8000`);
@@ -34,10 +36,3 @@ app.listen(PORT, () => {
 }).catch((error) =>{
     console.log(error);
 });
-
-// //listen
-// app.listen(PORT, () => {
-//   console.log(`server running on ${process.env.PORT}`);
-//   //console.log(`server running on 8000`);
-
-// })

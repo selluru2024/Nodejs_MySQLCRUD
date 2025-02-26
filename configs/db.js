@@ -1,9 +1,11 @@
+//declare the packages
 const mysql= require('mysql2/promise');
 const dotenv = require('dotenv');
+
 //configure dotenv
 dotenv.config();
 
-//data base ppool
+//data base pool connection using dotenv package to secure the credentials
 
 const mysqlpool=mysql.createPool({
     host: `${process.env.HOST}`,
